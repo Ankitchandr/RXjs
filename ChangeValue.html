@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+</head>
+<body>
+    <script src="https://unpkg.com/@reactivex/rxjs@5.5.7/dist/global/Rx.js"></script>
+     <h1 id="demo"></h1>
+</body>
+</html>
+<script>
+    var myObservable = Rx.Observable.create(observer => {
+        observer.next('Ankit');
+        setTimeout(() => observer.next('Chandra'), 2000);
+       });
+    myObservable.subscribe(value => document.getElementById("demo").innerHTML=(value));
+</script>

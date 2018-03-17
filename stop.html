@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+</head>
+<body>
+    <button>stop</button>
+    <script src="https://unpkg.com/@reactivex/rxjs@5.5.7/dist/global/Rx.js"></script>
+    Enter Text: <input type="text" />
+    <p id="demo"></p>
+    <p id="demo1"></p>
+
+</body>
+</html>
+<script>
+    var input = Rx.Observable.fromEvent(document.querySelector('input'), 'input');
+  // Pass on a new value
+    input.map(event => event.target.value)
+      .subscribe(value => document.getElementById("demo").innerHTML = (value)); // "h"
+
+    var stopStream = Rx.Observable.fromEvent(document.querySelector('button'), 'click');
+    input.takeUntil(stopStream)
+      .map(event => event.target.value)
+      .subscribe(value => document.getElementById("demo1").innerHTML = (value));  // "hello" (click)
+
+</script>
