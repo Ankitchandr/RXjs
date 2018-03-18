@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+</head>
+<body>
+   
+    <script src="https://unpkg.com/@reactivex/rxjs@5.5.7/dist/global/Rx.js"> </script>
+    <p id="demo">subscribe with try/catch block that will deliver an Error notification if it catches an exception:</p>
+    <p id="demo1"></p>
+
+</body>
+</html>
+<script>
+   
+    console.log("=========================");
+
+    var s = 'Ankit chandra';
+    var observable = Rx.Observable.create(function subscribe(observer) {
+        try {
+            observer.next(1);
+            observer.next(s.length);
+            observer.next(s/2);
+            observer.complete();
+        } catch (err) {
+            observer.error(err); // delivers an error if it caught one
+        }
+    });
+
+    console.log('before');
+    observable.subscribe(function (x) {
+        console.log(x);
+    });
+    console.log('after');
+
+</script>
